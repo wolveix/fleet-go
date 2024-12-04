@@ -116,10 +116,10 @@ type ScriptResult struct {
 }
 
 // FindScriptResult returns the script result with the corresponding ID.
-func (s *Service) FindScriptResult(id int) (*ScriptResult, error) {
+func (s *Service) FindScriptResult(executionID string) (*ScriptResult, error) {
 	scriptResult := ScriptResult{}
 
-	if _, err := s.makeRequest(http.MethodGet, "scripts/"+strconv.Itoa(id), nil, &scriptResult); err != nil {
+	if _, err := s.makeRequest(http.MethodGet, "scripts/results/"+executionID, nil, &scriptResult); err != nil {
 		return nil, err
 	}
 
